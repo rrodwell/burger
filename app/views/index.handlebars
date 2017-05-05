@@ -1,0 +1,55 @@
+<div class="container upper">
+    <div class="jumbotron text-center">
+        <h1>Eat-Da-Burger!</h1>
+    </div>
+    <div class="newBurger">
+        <ul>
+            {{#each burgers}}
+                {{#unless this.devoured}}
+                    <li>
+                        {{this.name}}
+
+                        <form action="/{{this.id}}?_method=PUT" method="POST">
+                            <input class="form-control" type="hidden" name="devoured" value="true">
+                            <button class="input-group-addon" type="submit">Devour!</button>
+                        </form>
+
+                        {{> burgers/delete-burger}}
+                    </li>
+                {{/unless}}
+            {{/each}}
+        </ul>
+    </div>
+    <div class="devoured">
+        <ul>
+            {{#each burgers}}
+                {{#unless this.devoured}}
+                    <li>
+                        {{this.name}}
+
+                        <form action="/{{this.id}}?_method=PUT" method="POST">
+                            <input type="hidden" name="devoured" value="true">
+                        </form>
+
+                        {{> burgers/delete-burger}}
+                    </li>
+                {{/unless}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+<div class="container btm-container">
+    <form class="create-update-form" action="/" method="POST">
+        <div class="form-group" id="textarea">
+            <textarea class="form-control" rows="3" id="comment"></textarea>
+        </div>
+        <div class="text-center">
+            <button class="btn-lg btn-info" id="submit">Submit</button>
+            <p><strong>Enter a burger you want to eat, then click the "Submit button.</strong></p>
+        </div>
+    </form>
+</div>
+
+
+<script type="text/javascript" src="assets/js/burgerFunction.js"></script>
